@@ -8,6 +8,7 @@
 
 <script>
   import Counter from '$components/Counter.svelte'
+  import Search from '$components/Search.svelte';
   import { DateTime } from 'luxon'
   import { x } from '../client/util'
 
@@ -45,6 +46,8 @@
 </style>
 
 <h1>Hello world!</h1>
+
+<Search />
 
 <h2>Latest Shows:</h2>
 <ul>
