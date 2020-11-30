@@ -1,11 +1,8 @@
-dependencies:
-  luxon: 1.25.0
 devDependencies:
-  '@sveltejs/adapter-node': 0.0.14
-  '@sveltejs/kit': 0.0.26
-  '@sveltejs/snowpack-config': 0.0.5_svelte@3.30.0
-  prettier: 2.2.1
-  prettier-plugin-svelte: 1.4.1_prettier@2.2.1+svelte@3.30.0
+  '@sveltejs/adapter-node': 0.0.16
+  '@sveltejs/kit': 0.0.27
+  '@sveltejs/snowpack-config': 0.0.7_svelte@3.30.0
+  luxon: 1.25.0
   svelte: 3.30.0
 lockfileVersion: 5.2
 packages:
@@ -35,9 +32,9 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-Uv6h1sT+0DrblvIrolFtbvM1FgWm+/sy4B3pvLp67Zys+thcukzS5ekn7HsZFGpWP4Q3fYJCljbWQE/XivMRLw==
-  /@rollup/plugin-alias/3.1.1_rollup@2.33.3:
+  /@rollup/plugin-alias/3.1.1_rollup@2.34.0:
     dependencies:
-      rollup: 2.33.3
+      rollup: 2.34.0
       slash: 3.0.0
     dev: true
     engines:
@@ -46,16 +43,16 @@ packages:
       rollup: ^1.20.0||^2.0.0
     resolution:
       integrity: sha512-hNcQY4bpBUIvxekd26DBPgF7BT4mKVNDF5tBG4Zi+3IgwLxGYRY0itHs9D0oLVwXM5pvJDWJlBQro+au8WaUWw==
-  /@rollup/plugin-commonjs/16.0.0_rollup@2.33.3:
+  /@rollup/plugin-commonjs/16.0.0_rollup@2.34.0:
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.33.3
+      '@rollup/pluginutils': 3.1.0_rollup@2.34.0
       commondir: 1.0.1
       estree-walker: 2.0.1
       glob: 7.1.6
       is-reference: 1.2.1
       magic-string: 0.25.7
       resolve: 1.19.0
-      rollup: 2.33.3
+      rollup: 2.34.0
     dev: true
     engines:
       node: '>= 8.0.0'
@@ -63,35 +60,35 @@ packages:
       rollup: ^2.30.0
     resolution:
       integrity: sha512-LuNyypCP3msCGVQJ7ki8PqYdpjfEkE/xtFa5DqlF+7IBD0JsfMZ87C58heSwIMint58sAUZbt3ITqOmdQv/dXw==
-  /@rollup/plugin-inject/4.0.2_rollup@2.33.3:
+  /@rollup/plugin-inject/4.0.2_rollup@2.34.0:
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.33.3
+      '@rollup/pluginutils': 3.1.0_rollup@2.34.0
       estree-walker: 1.0.1
       magic-string: 0.25.7
-      rollup: 2.33.3
+      rollup: 2.34.0
     dev: true
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
     resolution:
       integrity: sha512-TSLMA8waJ7Dmgmoc8JfPnwUwVZgLjjIAM6MqeIFqPO2ODK36JqE0Cf2F54UTgCUuW8da93Mvoj75a6KAVWgylw==
-  /@rollup/plugin-json/4.1.0_rollup@2.33.3:
+  /@rollup/plugin-json/4.1.0_rollup@2.34.0:
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.33.3
-      rollup: 2.33.3
+      '@rollup/pluginutils': 3.1.0_rollup@2.34.0
+      rollup: 2.34.0
     dev: true
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
     resolution:
       integrity: sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==
-  /@rollup/plugin-node-resolve/10.0.0_rollup@2.33.3:
+  /@rollup/plugin-node-resolve/10.0.0_rollup@2.34.0:
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.33.3
+      '@rollup/pluginutils': 3.1.0_rollup@2.34.0
       '@types/resolve': 1.17.1
       builtin-modules: 3.1.0
       deepmerge: 4.2.2
       is-module: 1.0.0
       resolve: 1.19.0
-      rollup: 2.33.3
+      rollup: 2.34.0
     dev: true
     engines:
       node: '>= 10.0.0'
@@ -99,22 +96,22 @@ packages:
       rollup: ^1.20.0||^2.0.0
     resolution:
       integrity: sha512-sNijGta8fqzwA1VwUEtTvWCx2E7qC70NMsDh4ZG13byAXYigBNZMxALhKUSycBks5gupJdq0lFrKumFrRZ8H3A==
-  /@rollup/plugin-replace/2.3.4_rollup@2.33.3:
+  /@rollup/plugin-replace/2.3.4_rollup@2.34.0:
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.33.3
+      '@rollup/pluginutils': 3.1.0_rollup@2.34.0
       magic-string: 0.25.7
-      rollup: 2.33.3
+      rollup: 2.34.0
     dev: true
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
     resolution:
       integrity: sha512-waBhMzyAtjCL1GwZes2jaE9MjuQ/DQF2BatH3fRivUF3z0JBFrU0U6iBNC/4WR+2rLKhaAhPWDNPYp4mI6RqdQ==
-  /@rollup/pluginutils/3.1.0_rollup@2.33.3:
+  /@rollup/pluginutils/3.1.0_rollup@2.34.0:
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.2.2
-      rollup: 2.33.3
+      rollup: 2.34.0
     dev: true
     engines:
       node: '>= 8.0.0'
@@ -147,48 +144,42 @@ packages:
       svelte: ^3.21.0
     resolution:
       integrity: sha512-drARTzJPtvmqZD+2B3KgcN2bsAk3xAWu97XJrfuNQpRLJInbrERLUNyEQbOssMQj8b0PA3/hMAaX0bkwZ9kglw==
-  /@sveltejs/adapter-node/0.0.14:
+  /@sveltejs/adapter-node/0.0.16:
     dependencies:
-      '@sveltejs/app-utils': 0.0.17
+      '@sveltejs/app-utils': 0.0.18
     dev: true
     resolution:
-      integrity: sha512-mVCzjk5mTYT28Moa8sAyOJT7Ol0rx9Le8gI6NAOZJ7ECmhWftzz3JqTbYikKx3hNVwxaSMKHal5wCDveP0ZQag==
-  /@sveltejs/app-utils/0.0.17:
-    dependencies:
-      mime: 2.4.6
-    dev: true
-    resolution:
-      integrity: sha512-QK6kjzR/w/hS1G9WY1olBPM7gGvi7yf0NE/PT7XpkA9tC8UlIhdIOQHoBbPmlIhlKUd5W8628EGHi815QpgxyQ==
+      integrity: sha512-JiPEXX+J3BDsy0PqwoNZ/aK6QcNYZsXy5MaJCIJvkJZZUqWZ1OfqP2M8STaJGKRdLRJGU9X65mRzwl8cZFJ/3g==
   /@sveltejs/app-utils/0.0.18:
     dependencies:
       mime: 2.4.6
     dev: true
     resolution:
       integrity: sha512-fwHT07xTrY8Zkj3RME2vE6dpqIocuI9qTW1vNGbNP0P+0seaEsIM6l4QRei8IRpz6dykExt+QVPlN57XrJ2Qfw==
-  /@sveltejs/kit/0.0.26:
+  /@sveltejs/kit/0.0.27:
     dependencies:
       '@sveltejs/app-utils': 0.0.18
       cheap-watch: 1.0.3
       http-proxy: 1.18.1
-      rollup: 2.33.3
+      rollup: 2.34.0
       rollup-dependency-tree: 0.0.14
-      rollup-plugin-css-chunks: 1.2.8_rollup@2.33.3
-      rollup-plugin-terser: 7.0.2_rollup@2.33.3
+      rollup-plugin-css-chunks: 1.2.8_rollup@2.34.0
+      rollup-plugin-terser: 7.0.2_rollup@2.34.0
       sade: 1.7.4
       scorta: 1.0.0
       snowpack: 2.17.1
     dev: true
     hasBin: true
     resolution:
-      integrity: sha512-W7ttzYX7W2Mhm6t2DFEGNnjEKEtNMagmC1LlsY7nAEOMTIpkU8APuMmkIHVwIlWHVBub0SuLS3RSuW+RmyB6EQ==
-  /@sveltejs/snowpack-config/0.0.5_svelte@3.30.0:
+      integrity: sha512-PEe3mpM5/WGbDvL3Z49HizMIl+BrA8fm/zWX9g0HIRcV/C/GtU4+hmaZlwAmzVqNxuS49t7ALJIzVyVJibfY5g==
+  /@sveltejs/snowpack-config/0.0.7_svelte@3.30.0:
     dependencies:
       '@snowpack/plugin-svelte': 3.3.0_svelte@3.30.0
     dev: true
     peerDependencies:
       svelte: '*'
     resolution:
-      integrity: sha512-lZQCbeKIwaGMVvWzw4HPo76NIE+MkLH73OapwZlALDurPWR1/fDOSMCFgpNecvr5Gh/y6nzFN6bsdgbpJpw3ng==
+      integrity: sha512-yQmg0jz7anzm0AuOGt4tNp3aM2y/knUJ+L0N8sLep8cb4NlVzfOle9s4lKk5RCSBc22mf6affBKFqJtsFLtC2w==
   /@types/estree/0.0.39:
     dev: true
     resolution:
@@ -527,12 +518,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Va0Q/xqtrss45hWzP8CZJwzGSZJjDM5/MJRE3IXXnUCcVLElR9BRaE9F62BopysASyc4nM3uwhSW7FFB9nlWAA==
-  /esbuild/0.8.16:
+  /esbuild/0.8.17:
     dev: true
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-HMvPNxDIhEGO/YUh8oO8oxQ1g+ttWz2anUF7NJmQglj2XfJS8zd8mP0Sb2y+jE1SVk3UjD/rYhdsEOFULN9/xw==
+      integrity: sha512-ReHap+Iyn5BQF0B8F3xrLwu+j57ri5uDUw2ej9XTPAuFDebYiWwRzBY4jhF610bklveXLbCGim/8/2wQKQlu1w==
   /escalade/3.1.1:
     dev: true
     engines:
@@ -547,19 +538,19 @@ packages:
       integrity: sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
   /esinstall/0.3.7:
     dependencies:
-      '@rollup/plugin-alias': 3.1.1_rollup@2.33.3
-      '@rollup/plugin-commonjs': 16.0.0_rollup@2.33.3
-      '@rollup/plugin-inject': 4.0.2_rollup@2.33.3
-      '@rollup/plugin-json': 4.1.0_rollup@2.33.3
-      '@rollup/plugin-node-resolve': 10.0.0_rollup@2.33.3
-      '@rollup/plugin-replace': 2.3.4_rollup@2.33.3
+      '@rollup/plugin-alias': 3.1.1_rollup@2.34.0
+      '@rollup/plugin-commonjs': 16.0.0_rollup@2.34.0
+      '@rollup/plugin-inject': 4.0.2_rollup@2.34.0
+      '@rollup/plugin-json': 4.1.0_rollup@2.34.0
+      '@rollup/plugin-node-resolve': 10.0.0_rollup@2.34.0
+      '@rollup/plugin-replace': 2.3.4_rollup@2.34.0
       cjs-module-lexer: 0.5.2
       es-module-lexer: 0.3.26
       is-builtin-module: 3.0.0
       kleur: 4.1.3
       mkdirp: 1.0.4
       rimraf: 3.0.2
-      rollup: 2.33.3
+      rollup: 2.34.0
       rollup-plugin-node-polyfills: 0.2.1
       validate-npm-package-name: 3.0.0
     dev: true
@@ -947,7 +938,7 @@ packages:
     resolution:
       integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   /luxon/1.25.0:
-    dev: false
+    dev: true
     resolution:
       integrity: sha512-hEgLurSH8kQRjY6i4YLey+mcKVAWXbDNlZRmM6AgWDJ1cY3atl8Ztf5wEY7VBReFbmGnwQPz7KYJblL8B2k0jQ==
   /magic-string/0.25.7:
@@ -1275,23 +1266,6 @@ packages:
       node: '>=4.0.0'
     resolution:
       integrity: sha1-AA29H47vIXqjaLmiEsX8QLKo8/I=
-  /prettier-plugin-svelte/1.4.1_prettier@2.2.1+svelte@3.30.0:
-    dependencies:
-      prettier: 2.2.1
-      svelte: 3.30.0
-    dev: true
-    peerDependencies:
-      prettier: ^1.16.4 || ^2.0.0
-      svelte: ^3.2.0
-    resolution:
-      integrity: sha512-6y0m37Xw01GRf/WIHau+Kp3uXj2JB1agtEmNVKb9opMy34A6OMOYhfneVpNIlrghQSw/jIV+t3e5Ngt4up2CMA==
-  /prettier/2.2.1:
-    dev: true
-    engines:
-      node: '>=10.13.0'
-    hasBin: true
-    resolution:
-      integrity: sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
   /promise-inflight/1.0.1:
     dev: true
     resolution:
@@ -1355,9 +1329,9 @@ packages:
     dev: true
     resolution:
       integrity: sha512-cQ+n9cXadPuF6dN+0WvYeRL8bwd+kQdbjT6dtna682QTRbDiKEYHZNl9TI5BY7U4DhFN2EJmkJRWi6A1cAsmOw==
-  /rollup-plugin-css-chunks/1.2.8_rollup@2.33.3:
+  /rollup-plugin-css-chunks/1.2.8_rollup@2.34.0:
     dependencies:
-      rollup: 2.33.3
+      rollup: 2.34.0
       rollup-pluginutils: 2.8.2
       sourcemap-codec: 1.4.8
     dev: true
@@ -1392,11 +1366,11 @@ packages:
       svelte: '*'
     resolution:
       integrity: sha512-ijnm0pH1ScrY4uxwaNXBpNVejVzpL2769hIEbAlnqNUWZrffLspu5/k9/l/Wsj3NrEHLQ6wCKGagVJonyfN7ow==
-  /rollup-plugin-terser/7.0.2_rollup@2.33.3:
+  /rollup-plugin-terser/7.0.2_rollup@2.34.0:
     dependencies:
       '@babel/code-frame': 7.10.4
       jest-worker: 26.6.2
-      rollup: 2.33.3
+      rollup: 2.34.0
       serialize-javascript: 4.0.0
       terser: 5.5.1
     dev: true
@@ -1410,7 +1384,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==
-  /rollup/2.33.3:
+  /rollup/2.34.0:
     dev: true
     engines:
       node: '>=10.0.0'
@@ -1418,7 +1392,7 @@ packages:
     optionalDependencies:
       fsevents: 2.1.3
     resolution:
-      integrity: sha512-RpayhPTe4Gu/uFGCmk7Gp5Z9Qic2VsqZ040G+KZZvsZYdcuWaJg678JeDJJvJeEQXminu24a2au+y92CUWVd+w==
+      integrity: sha512-dW5iLvttZzdVehjEuNJ1bWvuMEJjOWGmnuFS82WeKHTGXDkRHQeq/ExdifkSyJv9dLcR86ysKRmrIDyR6O0X8g==
   /sade/1.7.4:
     dependencies:
       mri: 1.1.6
@@ -1487,7 +1461,7 @@ packages:
       deepmerge: 4.2.2
       detect-port: 1.3.0
       es-module-lexer: 0.3.26
-      esbuild: 0.8.16
+      esbuild: 0.8.17
       esinstall: 0.3.7
       etag: 1.8.1
       execa: 4.1.0
@@ -1786,10 +1760,8 @@ packages:
     resolution:
       integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 specifiers:
-  '@sveltejs/adapter-node': 0.0.14
-  '@sveltejs/kit': 0.0.26
-  '@sveltejs/snowpack-config': 0.0.5
+  '@sveltejs/adapter-node': 0.0.16
+  '@sveltejs/kit': 0.0.27
+  '@sveltejs/snowpack-config': 0.0.7
   luxon: ^1.25.0
-  prettier: ^2.2.1
-  prettier-plugin-svelte: ^1.4.1
   svelte: ^3.29.0
