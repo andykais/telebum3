@@ -1,22 +1,22 @@
 const mockShowsResponse = [
 	{
 		id: 1,
-		type: "show",
+		type: "series",
 		name: "Run with the Wind",
-		status: 'watching',
-		imdb_url: 'https://www.imdb.com/title/tt9402026',
+		status: "watching",
+		imdb_url: "https://www.imdb.com/title/tt9402026",
 		friends_watching: [
 			{
 				id: 1,
-				status: 'watching'
+				status: "watching"
 			},
 			{ 
 				id: 2,
-				status: 'watching'
+				status: "watching"
 			},
 			{ 
 				id: 3,
-				status: 'completed'
+				status: "completed"
 			}
 		],
 		episodes: [
@@ -56,14 +56,14 @@ const mockShowsResponse = [
 	},
 	{
 		id: 2,
-		type: "show",
+		type: "series",
 		name: "The Crown",
-		status: 'watching',
-		imdb_url: 'https://www.imdb.com/title/tt4786824',
+		status: "watching",
+		imdb_url: "https://www.imdb.com/title/tt4786824",
 		friends_watching: [
 			{
 				id: 1,
-				status: 'watching'
+				status: "watching"
 			}
 		],
 		episodes: [
@@ -104,16 +104,16 @@ const mockShowsResponse = [
 		id: 3,
 		type: "movie",
 		name: "Perfect Blue",
-		status: 'completed',
-		imdb_url: 'https://www.imdb.com/title/tt0156887',
+		status: "completed",
+		imdb_url: "https://www.imdb.com/title/tt0156887",
 		friends_watching: [
 			{
 				id: 2,
-				status: 'watching'
+				status: "watching"
 			},
 			{ 
 				id: 3,
-				status: 'completed'
+				status: "completed"
 			}
 		],
 		episodes: [
@@ -126,14 +126,14 @@ const mockShowsResponse = [
 	},
 	{
 		id: 4,
-		type: "show",
+		type: "series",
 		name: "Devilman Crybaby",
-		status: 'completed',
-		imdb_url: 'https://www.imdb.com/title/tt6660498',
+		status: "completed",
+		imdb_url: "https://www.imdb.com/title/tt6660498",
 		friends_watching: [
 			{
 				id: 3,
-				status: 'completed'
+				status: "completed"
 			}
 		],
 		episodes: [
@@ -176,10 +176,10 @@ const mockShowsResponse = [
 	},
 	{
 		id: 5,
-		type: "show",
+		type: "series",
 		name: "Jimmy Neutron: Boy Genius",
-		status: 'unwatched',
-		imdb_url: 'https://www.imdb.com/title/tt0268397',
+		status: "unwatched",
+		imdb_url: "https://www.imdb.com/title/tt0268397",
 		friends_watching: [],
 		episodes: [
 			{ 

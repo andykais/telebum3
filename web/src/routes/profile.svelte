@@ -33,36 +33,6 @@
 	})
 </script>
 
-<h1>My shows</h1>
-
-<!-- tabs -->
-<div class="tabs">
-	{ #each tabs as tab, i }
-		<a class="tab" on:click={ () => changeOpenTab(i) }>{ tab }</a>
-	{ /each }
-</div>
-
-<!-- shows -->
-<div>
-	<ul class="shows-list">
-		{ #each shows[tabs[tabOpen]] as show (show.id) }
-			<li class="show">
-				<h3><a href="/show/{ show.id }">{ show.name }</a></h3>
-				<!-- friends who are watching or have already completed show -->
-				<ul class="friends-watching-list">
-					{ #each show.friends_watching as friend (friend.id) }
-					<li class="friend" class:completed="{ friend.status === 'completed' }">
-						{ friend.id }
-					</li>
-					{ /each }
-				</ul>
-			</li>
-		{ /each }
-	</ul>
-	
-</div>
-
-
 <style>
 	ul {
 		list-style-type: none;
@@ -79,23 +49,47 @@
 		color: darkblue;
 	}
 
+	h1 {
+		margin-bottom: 2rem;
+	}
+
+	.wrapper {
+	}
+
 	.tabs {
 		display: flex;
 		justify-content: space-between;
 	}
 
 	.tabs .tab {
-		padding: 0 .5rem;
+		padding: .5rem;
 		text-transform: capitalize;
 		cursor: pointer;
+		flex: 1;
+	}
+
+	.tabs .tab.selected {
+		background-color: #eeeeee;
+		border-top-right-radius: 1rem;
+		border-top-left-radius: 1rem;
+	}
+
+	.tabs .tab.completed a {
+		color: green;
+	}
+	.tabs .tab.unwatched a {
+		color: #888888;
+	}
+	.tabs .tab.watching a {
+		color: orange;
 	}
 
 	.shows-list .show {
 		background-color: #eeeeee;
 		display: flex;
 		align-items: center;
-		margin: .5rem 0;
-		padding: 0 .5rem;
+		margin-bottom: .5rem;
+		padding: .25rem .5rem;
 	}
 
 	.friends-watching-list .friend {
@@ -107,6 +101,7 @@
 		border: 2px orange solid;
 		width: .5rem;
 		height: .5rem;
+		line-height: .5rem;
 		border-radius: 1rem;
 		text-align: center;
 	}
@@ -115,3 +110,39 @@
 		border-color: green;
 	}
 </style>
+
+<div class="wrapper">
+	<h1>My shows</h1>
+
+	<!-- tabs -->
+	<div class="tabs">
+		{ #each tabs as tab, i }
+			<div class="tab { tab }" class:selected="{ i === tabOpen }">
+				<a on:click={ () => changeOpenTab(i) }>{ tab }</a>
+			</div>
+		{ /each }
+	</div>
+
+	<!-- shows -->
+	<ul class="shows-list">
+		{ #each shows[tabs[tabOpen]] as show (show.id) }
+			<li class="show">
+				<h3>
+					<a href="/show/{ show.id }">{ show.name }</a>
+				</h3>
+				<!-- friends who are watching or have already completed show -->
+				<ul class="friends-watching-list">
+					{ #each show.friends_watching as friend (friend.id) }
+					<li 
+						class="friend" 
+						class:completed="{ friend.status === 'completed' }" 
+						title="Friend { friend.id } { friend.status }"
+					>
+						{ friend.id }
+					</li>
+					{ /each }
+				</ul>
+			</li>
+		{ /each }
+	</ul>
+</div>
