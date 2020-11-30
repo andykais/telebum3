@@ -3,21 +3,27 @@ const mockShowsResponse = [
 		id: 1,
 		type: "show",
 		name: "Run with the Wind",
+		status: 'watching',
 		imdb_url: 'https://www.imdb.com/title/tt9402026',
 		friends_watching: [
 			{
 				id: 1,
-				completed: true
+				status: 'watching'
 			},
 			{ 
 				id: 2,
-				completed: false
+				status: 'watching'
+			},
+			{ 
+				id: 3,
+				status: 'completed'
 			}
 		],
 		episodes: [
 			{ 
 				id: 1,
-		 		completed: true
+		 		completed: true,
+		 		completed_on: Date.now()
 		 	},
 			{ 
 				id: 2,
@@ -25,7 +31,8 @@ const mockShowsResponse = [
 		 	},
 			{ 
 				id: 3,
-		 		completed: true
+		 		completed: true,
+		 		completed_on: Date.now()
 		 	},
 			{ 
 				id: 4,
@@ -37,11 +44,13 @@ const mockShowsResponse = [
 		 	},
 			{ 
 				id: 6,
-		 		completed: true
+		 		completed: true,
+		 		completed_on: Date.now()
 		 	},
 			{ 
 				id: 7,
-		 		completed: true
+		 		completed: true,
+		 		completed_on: Date.now()
 		 	}
 		]
 	},
@@ -49,33 +58,30 @@ const mockShowsResponse = [
 		id: 2,
 		type: "show",
 		name: "The Crown",
+		status: 'watching',
 		imdb_url: 'https://www.imdb.com/title/tt4786824',
 		friends_watching: [
 			{
 				id: 1,
-				completed: false
+				status: 'watching'
 			}
 		],
 		episodes: [
 			{ 
 				id: 1,
 		 		completed: false,
-		 		completed_on: Date.now()
 		 	},
 			{ 
 				id: 2,
-		 		completed: false,
-		 		completed_on: Date.now()
+		 		completed: false
 		 	},
 			{ 
 				id: 3,
-		 		completed: false,
-		 		completed_on: Date.now()
+		 		completed: false
 		 	},
 			{ 
 				id: 4,
-		 		completed: false,
-		 		completed_on: Date.now()
+		 		completed: false
 		 	},
 			{ 
 				id: 5,
@@ -98,17 +104,36 @@ const mockShowsResponse = [
 		id: 3,
 		type: "movie",
 		name: "Perfect Blue",
-		episode_count: 1,
-		episodes_completed: 1,
+		status: 'completed',
 		imdb_url: 'https://www.imdb.com/title/tt0156887',
 		friends_watching: [
 			{
-				id: 1,
-				completed: false
+				id: 2,
+				status: 'watching'
 			},
 			{ 
-				id: 2,
-				completed: false
+				id: 3,
+				status: 'completed'
+			}
+		],
+		episodes: [
+			{ 
+				id: 1,
+		 		completed: true,
+		 		completed_on: Date.now()
+		 	}
+		],
+	},
+	{
+		id: 4,
+		type: "show",
+		name: "Devilman Crybaby",
+		status: 'completed',
+		imdb_url: 'https://www.imdb.com/title/tt6660498',
+		friends_watching: [
+			{
+				id: 3,
+				status: 'completed'
 			}
 		],
 		episodes: [
@@ -129,12 +154,56 @@ const mockShowsResponse = [
 		 	},
 			{ 
 				id: 4,
-		 		completed: false,
+		 		completed: true,
 		 		completed_on: Date.now()
 		 	},
 			{ 
 				id: 5,
+		 		completed: true,
+		 		completed_on: Date.now()
+		 	},
+			{ 
+				id: 6,
+		 		completed: true,
+		 		completed_on: Date.now()
+		 	},
+			{ 
+				id: 7,
+		 		completed: true,
+		 		completed_on: Date.now()
+		 	}
+		],
+	},
+	{
+		id: 5,
+		type: "show",
+		name: "Jimmy Neutron: Boy Genius",
+		status: 'unwatched',
+		imdb_url: 'https://www.imdb.com/title/tt0268397',
+		friends_watching: [],
+		episodes: [
+			{ 
+				id: 1,
 		 		completed: false,
+		 	},
+			{ 
+				id: 2,
+		 		completed: true,
+		 		completed_on: Date.now()
+		 	},
+			{ 
+				id: 3,
+		 		completed: true,
+		 		completed_on: Date.now()
+		 	},
+			{ 
+				id: 4,
+		 		completed: true,
+		 		completed_on: Date.now()
+		 	},
+			{ 
+				id: 5,
+		 		completed: true,
 		 		completed_on: Date.now()
 		 	},
 			{ 
