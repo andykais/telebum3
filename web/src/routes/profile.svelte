@@ -41,19 +41,16 @@
 	}
 
 	a {
-		color: blue;
+		color: var(--primary);
 		text-decoration: none;
 	}
 
 	a:hover {
-		color: darkblue;
+		color: var(--primary-dark);
 	}
 
 	h1 {
 		margin-bottom: 2rem;
-	}
-
-	.wrapper {
 	}
 
 	.tabs {
@@ -69,23 +66,23 @@
 	}
 
 	.tabs .tab.selected {
-		background-color: #eeeeee;
+		background-color: var(--primary-contrast);
 		border-top-right-radius: 1rem;
 		border-top-left-radius: 1rem;
 	}
 
-	.tabs .tab.completed a {
-		color: green;
+	.tabs a.tab.completed {
+		color: var(--primary-light);
 	}
-	.tabs .tab.unwatched a {
-		color: #888888;
+	.tabs a.tab.unwatched {
+		color: var(--neutral);
 	}
-	.tabs .tab.watching a {
-		color: orange;
+	.tabs a.tab.watching {
+		color: var(--secondary-light);
 	}
 
 	.shows-list .show {
-		background-color: #eeeeee;
+		background-color: var(--primary-contrast);
 		display: flex;
 		align-items: center;
 		margin-bottom: .5rem;
@@ -97,7 +94,7 @@
 		font-size: .5rem;
 		padding: .2rem;
 		margin: 0 .1rem;
-		background-color: lightblue;
+		background-color: var(--purple-page-background);
 		border: 2px orange solid;
 		width: .5rem;
 		height: .5rem;
@@ -107,19 +104,23 @@
 	}
 
 	.friends-watching-list .friend.completed {
-		border-color: green;
+		border-color: var(--primary-light);
 	}
 </style>
 
-<div class="wrapper">
+<div class="profile">
 	<h1>My shows</h1>
 
 	<!-- tabs -->
 	<div class="tabs">
 		{ #each tabs as tab, i }
-			<div class="tab { tab }" class:selected="{ i === tabOpen }">
-				<a on:click={ () => changeOpenTab(i) }>{ tab }</a>
-			</div>
+			<a 
+				on:click={ () => changeOpenTab(i) } 
+				class="tab { tab }" 
+				class:selected="{ i === tabOpen }"
+			>
+				{ tab }
+			</a>
 		{ /each }
 	</div>
 

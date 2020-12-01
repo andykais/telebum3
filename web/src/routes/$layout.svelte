@@ -4,29 +4,25 @@
   import Footer from '$components/Footer.svelte'
 </script>
 
-<svelte:head>
-  <style>
-    * {
-      margin: 0;
-    }
-  </style>
-</svelte:head>
-
-<main>
-  <Header/>
-  <slot></slot>
-  <Footer/>
-</main>
-
 <style>
   main {
     position: relative;
     text-align: center;
-    padding-bottom: 2.5rem;    /* Footer height */
     margin: 0 auto;
     min-height: 100vh;
-    box-sizing: border-box;
-    min-height: 100vh;
+
+    /* stretches page to full height and puts footer on bottom: */
+    /* DOCS https://dev.to/domysee/keeping-the-footer-at-the-bottom-with-css-flexbox-5h5f */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-wrapper {
+    flex-grow: 1; /* for keeping footer on bottom */
+    width: 100%;
+    background-color: var(--purple-page-background);
+    padding: 1rem 0;
   }
 
   :root {
@@ -35,6 +31,7 @@
 
     /* Color variables */
     --background: #F3F0F7;
+    --purple-page-background: #e8e4ff;
 
     --primary: #3f50b5;
     --primary-light: #757ce8;
@@ -50,6 +47,22 @@
 
     /* Sizing & Spacing vars */
     --max-width: 1024px;
-
   }
+
 </style>
+
+<svelte:head>
+  <style>
+    * {
+      margin: 0;
+    }
+  </style>
+</svelte:head>
+
+<main>
+  <Header/>
+  <div class="page-wrapper">
+    <slot></slot>
+  </div>
+  <Footer/>
+</main>
