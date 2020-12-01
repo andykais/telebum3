@@ -9,6 +9,7 @@
 <script>
   import Counter from '$components/Counter.svelte'
   import { DateTime } from 'luxon'
+  import { x } from '../client/util'
 
   const tomorrow = DateTime.local().plus({ days: 1 })
 
@@ -45,20 +46,23 @@
 
 <h1>Hello world!</h1>
 
-
 <h2>Latest Shows:</h2>
 <ul>
   {#each data as show}
-    <li>
-      {show.title}
-    </li>
+    <li>{show.title}</li>
   {/each}
 </ul>
+
+<div>
+  A value from src/client/util:
+  <strong>x: {x}</strong>
+</div>
+
 <Counter />
 <p>
-Visit the
-<a href="https://svelte.dev">svelte.dev</a>
-to learn how to build Svelte apps.
+  Visit the
+  <a href="https://svelte.dev">svelte.dev</a>
+  to learn how to build Svelte apps.
 </p>
 
 <div>

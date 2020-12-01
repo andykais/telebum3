@@ -2,7 +2,8 @@
 module.exports = {
 	extends: '@sveltejs/snowpack-config',
 	mount: {
-		'src/components': '/_components'
+		'src/components': '/_components',
+    'src/client': '/_client',
 	},
 	alias: {
 		'$components': './src/components'
