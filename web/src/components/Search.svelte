@@ -15,10 +15,6 @@
     filteredItems = results;
   }
 
-  function onFocus() {
-    console.log( "onFocus" );
-  }
-
   function onInputClick( item ) {
     text = item;
   }
@@ -45,10 +41,6 @@
         text = filteredItems[currentIndex];
     }
   }
-
-  function doSearch() {
-    console.log("doSearch")
-  }
 </script>
 
 <input
@@ -57,10 +49,9 @@
   bind:value  = {text}
   on:input    = {onInput}
   on:keydown  = {onKeyDown}
-  placeholder = "something"
+  placeholder = "..."
 >
-
-<button on:click="{doSearch}">Search</button>
+<a href="show/{text}">Search</a>
 
 {#if filteredItems && filteredItems.length}
 <div class="autocomplete-list" bind:this={results}>
