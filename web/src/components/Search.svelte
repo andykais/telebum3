@@ -4,6 +4,7 @@
   let input;
   let results       = [];
   let filteredItems = [];
+  let currentIndex  = 0;
 
   async function onInput() {
     results = await autoComplete( text );
@@ -15,41 +16,64 @@
   }
 
   function onFocus() {
-    console.log('onFocus')
+    console.log( "onFocus" );
   }
 
-  function onKeyDown() {
-    console.log('onKeyDown')
+  function onInputClick( item ) {
+    text = item;
   }
 
-  function onInputClick() {
-    console.log('onInputClick')
+  function onKeyDown( e ) {
+    switch( e.key ) {
+      case 'ArrowDown':
+        if ( currentIndex < filteredItems.length - 1 ) {
+          currentIndex++;
+        }
+        else {
+          currentIndex = filteredItems.length - 1;
+        }
+        break;
+      case 'ArrowUp':
+        if ( currentIndex > filteredItems.length - 1 ) {
+          currentIndex--;
+        }
+        else {
+          currentIndex = 0;
+        }
+        break;
+      case 'Enter':
+        text = filteredItems[currentIndex];
+    }
   }
 
-  function onKeyPress() {
-    console.log('onKeyPress')
+  function doSearch() {
+    console.log("doSearch")
   }
 </script>
 
-<style>
-</style>
-
 <input
-  class="input autocomplete-input"
+  class       = "input autocomplete-input"
   bind:this   = {input}
   bind:value  = {text}
   on:input    = {onInput}
   on:keydown  = {onKeyDown}
-  on:click    = {onInputClick}
-  on:keypress = {onKeyPress}
   placeholder = "something"
 >
+
+<button on:click="{doSearch}">Search</button>
+
 {#if filteredItems && filteredItems.length}
 <div class="autocomplete-list" bind:this={results}>
-  {#each filteredItems as item}
-    <div class="autocomplete-list-item">
-      {@html item}
+  {#each filteredItems as item, i}
+    <div class="{currentIndex == i ? 'selected' : ''} autocomplete-list-item">
+      <a on:click="{() => { onInputClick( item ) }}">{item}</a>
     </div>
   {/each}
 </div>
 {/if}
+
+<style>
+  .selected {
+    background-color: blue;
+  }
+</style>
