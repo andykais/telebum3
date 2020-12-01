@@ -81,8 +81,12 @@
 		color: var(--secondary-light);
 	}
 
-	.shows-list .show {
+	.shows-list {
 		background-color: var(--primary-contrast);
+		padding: 1rem;
+	}
+
+	.shows-list .show {
 		display: flex;
 		align-items: center;
 		margin-bottom: .5rem;
@@ -95,12 +99,13 @@
 		padding: .2rem;
 		margin: 0 .1rem;
 		background-color: var(--purple-page-background);
-		border: 2px orange solid;
+		border: 2px var(--secondary-light) solid;
 		width: .5rem;
 		height: .5rem;
 		line-height: .5rem;
 		border-radius: 1rem;
 		text-align: center;
+		cursor: pointer;
 	}
 
 	.friends-watching-list .friend.completed {
