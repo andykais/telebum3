@@ -8,9 +8,14 @@
     <a href="/" title="Profile">
       { title }
     </a>
-    <a href="/profile" title="Profile">
-      <img class="icon-link" src="/tv-icon.png" alt="profile-link"/>
-    </a>
+    <section class="nav-links">
+      <a href="/profile" title="Profile">
+        <img class="icon-link" src="/tv-icon.png" alt="profile link"/>
+      </a>
+      <a href="/watchparties" title="My watch parties">
+        <img class="icon-link" src="/tv-icon.png" alt="watch parties link"/>
+      </a>
+    </section>
   </h3>
 </header>
 

@@ -1,7 +1,7 @@
 const mockShowsResponse = [
 	{
 		id: 1,
-		type: "series",
+		show_type: "SERIES",
 		name: "Run with the Wind",
 		status: "watching",
 		imdb_url: "https://www.imdb.com/title/tt9402026",
@@ -56,7 +56,7 @@ const mockShowsResponse = [
 	},
 	{
 		id: 2,
-		type: "series",
+		show_type: "SERIES",
 		name: "The Crown",
 		status: "watching",
 		imdb_url: "https://www.imdb.com/title/tt4786824",
@@ -102,7 +102,7 @@ const mockShowsResponse = [
 	},
 	{
 		id: 3,
-		type: "movie",
+		show_type: "MOVIE",
 		name: "Perfect Blue",
 		status: "completed",
 		imdb_url: "https://www.imdb.com/title/tt0156887",
@@ -126,7 +126,7 @@ const mockShowsResponse = [
 	},
 	{
 		id: 4,
-		type: "series",
+		show_type: "SERIES",
 		name: "Devilman Crybaby",
 		status: "completed",
 		imdb_url: "https://www.imdb.com/title/tt6660498",
@@ -176,7 +176,7 @@ const mockShowsResponse = [
 	},
 	{
 		id: 5,
-		type: "series",
+		show_type: "SERIES",
 		name: "Jimmy Neutron: Boy Genius",
 		status: "unwatched",
 		imdb_url: "https://www.imdb.com/title/tt0268397",
