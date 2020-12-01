@@ -1,8 +1,18 @@
+<script context="module">
+  export async function preload() {
+    const response = await this.fetch('/data/shows/latest')
+    const data = await response.json()
+    return { data }
+  }
+</script>
+
 <script>
   import Counter from '$components/Counter.svelte'
   import { DateTime } from 'luxon'
 
   const tomorrow = DateTime.local().plus({ days: 1 })
+
+  export let data
 </script>
 
 <style>
@@ -35,8 +45,21 @@
 
 <h1>Hello world!</h1>
 
+
+<h2>Latest Shows:</h2>
+<ul>
+  {#each data as show}
+    <li>
+      {show.title}
+    </li>
+  {/each}
+</ul>
 <Counter />
-<p>Visit the <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte apps.</p>
+<p>
+Visit the
+<a href="https://svelte.dev">svelte.dev</a>
+to learn how to build Svelte apps.
+</p>
 
 <div>
   This is a date created using luxon (a npm module):
