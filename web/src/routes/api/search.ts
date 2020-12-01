@@ -1,6 +1,8 @@
 import { getAllShows } from "./profile";
 
 export async function autoComplete(text: string) {
+  // Ideally we do something better than grabbing all shows each
+  // time someone types.
   const options = await getAllShows();
 
   let arr = [];
