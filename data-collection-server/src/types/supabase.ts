@@ -13,8 +13,11 @@ export interface definitions {
     id: number;
     inserted_at: string;
     updated_at: string;
-    status: "STARTED" | "COMPLETED" | "ERRORED";
+    status?: "STARTED" | "ERRORED" | "COMPLETED";
+    stats?: string;
     error?: string;
+    movie_progress_percentage?: number;
+    tv_series_progress_percentage?: number;
   };
   movie: {
     /**
@@ -24,7 +27,7 @@ export interface definitions {
     id: number;
     inserted_at: string;
     updated_at: string;
-    release_date: string;
+    release_date?: string;
     themoviedb_id: number;
     status?: string;
     overview?: string;
@@ -58,10 +61,9 @@ export interface definitions {
     episode_number: number;
     inserted_at: string;
     updated_at: string;
-    release_date: string;
+    air_date: string;
     episode_order?: number;
     name?: string;
-    original_name?: string;
     profile_path?: string;
     overview?: string;
     additional_images?: string;
@@ -85,7 +87,6 @@ export interface definitions {
     poster_path?: string;
     overview?: string;
     name?: string;
-    spoken_languages?: string;
     additional_images?: string;
     additional_videos?: string;
   };
@@ -108,6 +109,8 @@ export interface definitions {
     poster_path?: string;
     tagline?: string;
     series_type?: string;
+    original_language?: string;
+    spoken_languages?: string;
     additional_images?: string;
     additional_videos?: string;
   };

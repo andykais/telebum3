@@ -1,13 +1,36 @@
+import * as errors from './errors'
 import { fetch_binary, fetch_json } from './util'
 import type { Context } from './index'
+import type { definitions as tables } from './types/supabase'
+
+async function upsert_movie({ supabase, stats }: Context, movie_row_data: any) {
+  const prev_res = await supabase
+    .from<tables['movie']>('movie')
+    .select()
+    .eq('themoviedb_id', movie_row_data.themoviedb_id)
+  if (prev_res.error) throw new errors.SupabaseError(prev_res.error)
+  const insert = prev_res.data!.length === 0
+  if (insert) {
+    const res = await supabase.from<tables['movie']>('movie').insert([movie_row_data])
+    if (res.error) throw new errors.SupabaseError(res.error)
+    stats.movies.created++
+    return { insert, data: res.data! }
+  } else {
+    const res = await supabase
+      .from<tables['movie']>('movie')
+      .update(movie_row_data)
+      .eq('themoviedb_id', movie_row_data.themoviedb_id)
+    if (res.error) throw new errors.SupabaseError(res.error)
+    stats.movies.updated++
+    return { insert, data: res.data! }
+  }
+}
 
 async function collect_movie(context: Context, id: string) {
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${context.moviedb_api_key}&append_to_response=images,videos`
   const movie_data = await fetch_json(url)
-  // const { inspect } = require('util')
-  // console.log(inspect(movie_data, { depth: null, colors: true }))
   const row_data = {
-    release_date: movie_data.release_date,
+    release_date: movie_data.release_date ? movie_data.release_date : null,
     themoviedb_id: movie_data.id,
     status: movie_data.status,
     overview: movie_data.overview,
@@ -21,10 +44,7 @@ async function collect_movie(context: Context, id: string) {
     additional_videos: JSON.stringify(movie_data.videos),
     additional_images: JSON.stringify(movie_data.images),
   }
-  const { data, error } = await context.supabase.from('movie').insert([row_data])
-  if (error)
-    throw new Error(`SupabaseError: inserting into 'movies' table:\n ${JSON.stringify(error)}`)
-  return data
+  return await upsert_movie(context, row_data)
 }
 
 export { collect_movie }

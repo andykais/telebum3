@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --watch --noEmit",
     "start": "node build/index.js",
+    "start:scheduler": "node build/index.js --scheduler",
     "format": "prettier --write src/**/*.ts"
   },
   "keywords": [],
@@ -20,10 +21,12 @@
     "@types/node-fetch": "^2.5.7",
     "openapi-typescript": "^2.4.2",
     "prettier": "^2.2.1",
+    "source-map-support": "^0.5.19",
     "typescript": "^4.1.2"
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.0.7",
+    "date-fns": "^2.16.1",
     "node-fetch": "^2.6.1"
   }
 }
