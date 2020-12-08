@@ -23,7 +23,7 @@ function init_context() {
     tv_seasons: { created: 0, updated: 0 },
     tv_episodes: { created: 0, updated: 0 },
     total_movies_queued: 0,
-    total_tv_series_queued: 0
+    total_tv_series_queued: 0,
   }
   let log_id: number | undefined
   return { supabase, moviedb_api_key, stats, log_id }
@@ -36,11 +36,13 @@ async function start() {
   const new_log = await logs.start_new_log(context)
   context.log_id = new_log.id
 
+  const oldest_date_themoviedb_can_query_for_changes = subDays(new Date(), 14)
+
   try {
     if (prev_log === undefined) await pull_all(context)
     else {
       const last_ran_date = new Date(prev_log.inserted_at)
-      if (last_ran_date < subDays(new Date(), 14)) await pull_all(context)
+      if (last_ran_date < oldest_date_themoviedb_can_query_for_changes) await pull_all(context)
       else await pull_changes(context, last_ran_date)
     }
     await logs.update_status(context, new_log.id, 'COMPLETED')
