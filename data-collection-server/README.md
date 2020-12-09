@@ -16,3 +16,6 @@ This will take quite a while. After the first successful run, the service will o
 that have changed since the last successful run. If the service has not ran successfully for 14 days, it will
 again attempt to download the whole world from themoviedb, since 14 days ago is the furthest back themoviedb
 allows us to query for changed tv shows and movies
+
+## TODO
+- [ ] handle orphaned moviedb ids. E.g. what do we do if themoviedb drops an entry?

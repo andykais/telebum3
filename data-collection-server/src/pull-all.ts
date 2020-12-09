@@ -1,3 +1,4 @@
+import * as date_fns from 'date-fns'
 import { fetch_binary } from './util'
 import { collect_movie } from './movies'
 import { collect_tv_series } from './tv_series'
@@ -6,14 +7,9 @@ import type { Context } from './index'
 
 function format_date_for_urls() {
   const todays_date = new Date()
-  return `${todays_date
-    .getMonth()
-    .toString()
-    .padStart(2, '0')}_${todays_date
-    .getDay()
-    .toString()
-    .padStart(2, '0')}_${todays_date.getFullYear()}`
+  return date_fns.format(todays_date, 'MM_dd_yyyy')
 }
+
 async function collect_all_movies(context: Context) {
   const todays_date_formatted = format_date_for_urls()
   const url = `http://files.tmdb.org/p/exports/movie_ids_${todays_date_formatted}.json.gz`
@@ -27,8 +23,7 @@ async function collect_all_movies(context: Context) {
   console.log(`themoviedb currently has ${movie_ids.length} movies`)
   context.stats.total_movies_queued = movie_ids.length
   await logs.update_progress(context)
-  for (const i of movie_ids.keys()) {
-    const { id } = movie_ids[i]
+  for (const { id } of movie_ids) {
     await collect_movie(context, id)
     await logs.update_progress(context)
   }
@@ -46,8 +41,7 @@ async function collect_all_tv_series(context: Context) {
 
   console.log(`themoviedb currently has ${tv_series_ids.length} tv series`)
   context.stats.total_tv_series_queued = tv_series_ids.length
-  for (const i of tv_series_ids.keys()) {
-    const { id } = tv_series_ids[i]
+  for (const { id } of tv_series_ids) {
     await collect_tv_series(context, id)
     await logs.update_progress(context)
   }

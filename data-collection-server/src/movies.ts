@@ -12,7 +12,7 @@ async function upsert_movie({ supabase, stats }: Context, movie_row_data: any) {
   const insert = prev_res.data!.length === 0
   if (insert) {
     const res = await supabase.from<tables['movie']>('movie').insert([movie_row_data])
-    if (res.error) throw new errors.SupabaseError(res.error)
+    if (res.error) throw new errors.SupabaseError(res.error, movie_row_data)
     stats.movies.created++
     return { insert, data: res.data! }
   } else {
@@ -20,7 +20,7 @@ async function upsert_movie({ supabase, stats }: Context, movie_row_data: any) {
       .from<tables['movie']>('movie')
       .update(movie_row_data)
       .eq('themoviedb_id', movie_row_data.themoviedb_id)
-    if (res.error) throw new errors.SupabaseError(res.error)
+    if (res.error) throw new errors.SupabaseError(res.error, movie_row_data)
     stats.movies.updated++
     return { insert, data: res.data! }
   }
@@ -36,6 +36,7 @@ async function collect_movie(context: Context, id: string) {
     overview: movie_data.overview,
     runtime: movie_data.runtime,
     title: movie_data.title,
+    original_title: movie_data.original_title,
     original_language: movie_data.original_language,
     spoken_languages: JSON.stringify(movie_data.original_languages),
     imdb_id: movie_data.imdb_id,

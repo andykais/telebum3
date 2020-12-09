@@ -91,7 +91,8 @@ async function collect_tv_series(context: Context, id: string) {
   const tv_series_data = await fetch_json(url)
 
   const tv_series_row_data = {
-    title: tv_series_data.title || tv_series_data.original_name,
+    title: tv_series_data.title,
+    original_title: tv_series_data.original_title,
     original_language: tv_series_data.original_language,
     spoken_languages: JSON.stringify(tv_series_data.spoken_languages),
     imdb_id: tv_series_data.imdb_id,
