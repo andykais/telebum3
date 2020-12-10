@@ -18,12 +18,10 @@ function init_context() {
   const supabase_telebum_url = 'https://scpjtuqjxrphrqlsfwio.supabase.co'
   const supabase = createClient(supabase_telebum_url, supabase_private_key, options)
   const stats = {
-    movies: { created: 0, updated: 0 },
-    tv_series: { created: 0, updated: 0 },
+    movies: { created: 0, updated: 0, total_queued: 0, invalid_ids: [] as string[] },
+    tv_series: { created: 0, updated: 0, total_queued: 0, invalid_ids: [] as string[] },
     tv_seasons: { created: 0, updated: 0 },
     tv_episodes: { created: 0, updated: 0 },
-    total_movies_queued: 0,
-    total_tv_series_queued: 0,
   }
   let log_id: number | undefined
   return { supabase, moviedb_api_key, stats, log_id }

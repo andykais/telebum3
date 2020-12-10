@@ -1,4 +1,5 @@
 import * as date_fns from 'date-fns'
+import * as errors from './errors'
 import { fetch_binary } from './util'
 import { collect_movie } from './movies'
 import { collect_tv_series } from './tv_series'
@@ -21,10 +22,11 @@ async function collect_all_movies(context: Context) {
     .map(r => JSON.parse(r))
 
   console.log(`themoviedb currently has ${movie_ids.length} movies`)
-  context.stats.total_movies_queued = movie_ids.length
+  context.stats.movies.total_queued = movie_ids.length
   await logs.update_progress(context)
-  for (const { id } of movie_ids) {
-    await collect_movie(context, id)
+  for (const row of movie_ids) {
+    console.log(row)
+    await collect_movie(context, row.id)
     await logs.update_progress(context)
   }
 }
@@ -40,9 +42,10 @@ async function collect_all_tv_series(context: Context) {
     .map(r => JSON.parse(r))
 
   console.log(`themoviedb currently has ${tv_series_ids.length} tv series`)
-  context.stats.total_tv_series_queued = tv_series_ids.length
-  for (const { id } of tv_series_ids) {
-    await collect_tv_series(context, id)
+  context.stats.tv_series.total_queued = tv_series_ids.length
+  for (const row of tv_series_ids) {
+    console.log(row)
+    await collect_tv_series(context, row.id)
     await logs.update_progress(context)
   }
 }

@@ -10,7 +10,7 @@ async function collect_movies_changes_since(context: Context, last_update_date: 
   for (let page = 1; page <= total_pages; page++) {
     const url = `https://api.themoviedb.org/3/movie/changes?api_key=${context.moviedb_api_key}&start_date=${last_update_date}&page=${page}`
     const movie_data = await fetch_json(url)
-    context.stats.total_movies_queued += movie_data.results.length
+    context.stats.movies.total_queued += movie_data.results.length
     await logs.update_progress(context)
     total_pages = movie_data.total_pages
     for (const { id } of movie_data.results) {
@@ -27,7 +27,7 @@ async function collect_tv_series_changes_since(context: Context, last_update_dat
     const url = `https://api.themoviedb.org/3/tv/changes?api_key=${context.moviedb_api_key}&start_date=${last_update_date}&page=${page}`
     const tv_series_data = await fetch_json(url)
     for (const { id } of tv_series_data.results) await collect_tv_series(context, id)
-    context.stats.total_tv_series_queued += tv_series_data.results.length
+    context.stats.tv_series.total_queued += tv_series_data.results.length
     await logs.update_progress(context)
     total_pages = tv_series_data.total_pages
     for (const { id } of tv_series_data.results) {

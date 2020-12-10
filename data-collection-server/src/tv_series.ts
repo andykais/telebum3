@@ -85,10 +85,13 @@ async function upsert_tv_episode({ supabase, stats }: Context, tv_episode_row_da
   }
 }
 
-async function collect_tv_series(context: Context, id: string) {
+async function retrieve_and_write_tv_series(context: Context, id: string) {
   const { supabase, moviedb_api_key } = context
   const url = `https://api.themoviedb.org/3/tv/${id}?api_key=${moviedb_api_key}&append_to_response=images,videos`
-  const tv_series_data = await fetch_json(url)
+  const tv_series_data = await fetch_json(url).catch(e => {
+    if (e instanceof errors.FetchError && e.status === 404) throw new errors.InvalidMovieDBEntry()
+    else throw e
+  })
 
   const tv_series_row_data = {
     title: tv_series_data.title,
@@ -144,6 +147,15 @@ async function collect_tv_series(context: Context, id: string) {
       }
       const tv_episode_row = await upsert_tv_episode(context, tv_episode_row_data)
     }
+  }
+}
+
+async function collect_tv_series(context: Context, id: string) {
+  try {
+    await collect_tv_series(context, id)
+  } catch (e) {
+    if (e instanceof errors.InvalidMovieDBEntry) context.stats.tv_series.invalid_ids.push(id)
+    else throw e
   }
 }
 

@@ -26,9 +26,12 @@ async function upsert_movie({ supabase, stats }: Context, movie_row_data: any) {
   }
 }
 
-async function collect_movie(context: Context, id: string) {
+async function retrieve_and_write_movie(context: Context, id: string) {
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${context.moviedb_api_key}&append_to_response=images,videos`
-  const movie_data = await fetch_json(url)
+  const movie_data = await fetch_json(url).catch(e => {
+    if (e instanceof errors.FetchError && e.status === 404) throw new errors.InvalidMovieDBEntry()
+    else throw e
+  })
   const row_data = {
     release_date: movie_data.release_date ? movie_data.release_date : null,
     themoviedb_id: movie_data.id,
@@ -46,6 +49,15 @@ async function collect_movie(context: Context, id: string) {
     additional_images: JSON.stringify(movie_data.images),
   }
   return await upsert_movie(context, row_data)
+}
+
+async function collect_movie(context: Context, id: string) {
+  try {
+    await retrieve_and_write_movie(context, id)
+  } catch (e) {
+    if (e instanceof errors.InvalidMovieDBEntry) context.stats.movies.invalid_ids.push(id)
+    else throw e
+  }
 }
 
 export { collect_movie }

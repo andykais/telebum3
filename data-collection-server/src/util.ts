@@ -1,6 +1,7 @@
 import zlib from 'zlib'
 import fetch from 'node-fetch'
 import type { RequestInit } from 'node-fetch'
+import * as errors from './errors'
 
 function get_env_var(key: string): string {
   const env_var = process.env[key]
@@ -25,7 +26,7 @@ async function fetch_binary(url: string, options?: RequestInit) {
 
 async function fetch_json(url: string, options?: RequestInit) {
   const response = await fetch(url, options)
-  if (!response.ok) throw new Error(`Request failed:\n${url}\n\n${await response.text()}`)
+  if (!response.ok) throw new errors.FetchError(response, await response.text())
   const json = await response.json()
   return json
 }
