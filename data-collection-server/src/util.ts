@@ -31,4 +31,15 @@ async function fetch_json(url: string, options?: RequestInit) {
   return json
 }
 
-export { get_env_var, fetch_binary, fetch_json }
+async function fetch_moviedb(url: string, options?: RequestInit) {
+  const response = await fetch(url, options)
+  const json = await response.json()
+  if (!response.ok) {
+    console.log(json)
+    if (response.status === 404) throw new errors.MovieDbError(JSON.stringify(json))
+    else throw new errors.FetchError(response, JSON.stringify(json))
+  }
+  return json
+}
+
+export { get_env_var, fetch_binary, fetch_json, fetch_moviedb }

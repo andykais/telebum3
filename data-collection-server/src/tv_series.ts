@@ -1,5 +1,5 @@
 import * as errors from './errors'
-import { fetch_binary, fetch_json } from './util'
+import { fetch_binary, fetch_moviedb } from './util'
 import type { Context } from './index'
 import type { definitions as tables } from './types/supabase'
 
@@ -85,76 +85,83 @@ async function upsert_tv_episode({ supabase, stats }: Context, tv_episode_row_da
   }
 }
 
-async function retrieve_and_write_tv_series(context: Context, id: string) {
-  const { supabase, moviedb_api_key } = context
-  const url = `https://api.themoviedb.org/3/tv/${id}?api_key=${moviedb_api_key}&append_to_response=images,videos`
-  const tv_series_data = await fetch_json(url).catch(e => {
-    if (e instanceof errors.FetchError && e.status === 404) throw new errors.InvalidMovieDBEntry()
-    else throw e
-  })
-
-  const tv_series_row_data = {
-    title: tv_series_data.title,
-    original_title: tv_series_data.original_title,
-    original_language: tv_series_data.original_language,
-    spoken_languages: JSON.stringify(tv_series_data.spoken_languages),
-    imdb_id: tv_series_data.imdb_id,
-    number_of_episodes: tv_series_data.number_of_episodes,
-    number_of_seasons: tv_series_data.number_of_seasons,
-    overview: tv_series_data.overview,
-    poster_path: tv_series_data.poster_path,
-    release_date: tv_series_data.release_date ? tv_series_data.release_date : null,
-    series_type: tv_series_data.series_type,
-    status: tv_series_data.status,
-    tagline: tv_series_data.tagline,
-    themoviedb_id: tv_series_data.id,
-    genres: JSON.stringify(tv_series_data.genres),
-    additional_videos: JSON.stringify(tv_series_data.videos),
-    additional_images: JSON.stringify(tv_series_data.images),
-  }
-
-  const tv_series_row = await upsert_tv_series(context, tv_series_row_data)
-
-  const tv_series_id = tv_series_row.data[0].id
-
-  for (const season of tv_series_data.seasons) {
-    const url = `https://api.themoviedb.org/3/tv/${id}/season/${season.season_number}?api_key=${moviedb_api_key}&append_to_response=images,videos`
-    const tv_season_data = await fetch_json(url)
-    const tv_season_row_data = {
-      tv_series_id: tv_series_id,
-      season_number: tv_season_data.season_number,
-      air_date: tv_season_data.air_date,
-      name: tv_season_data.name,
-      overview: tv_season_data.overview,
-      poster_path: tv_season_data.poster_path,
-      additional_videos: JSON.stringify(tv_season_data.videos),
-      additional_images: JSON.stringify(tv_season_data.images),
-    }
-    const tv_season_row = await upsert_tv_season(context, tv_season_row_data)
-
-    for (const episode of tv_season_data.episodes) {
-      const url = `https://api.themoviedb.org/3/tv/${id}/season/${season.season_number}/episode/${episode.episode_number}?api_key=${moviedb_api_key}&append_to_response=images,videos`
-      const tv_episode_data = await fetch_json(url)
-      const tv_episode_row_data = {
-        tv_series_id: tv_series_id,
-        season_number: tv_season_data.season_number,
-        episode_number: tv_episode_data.episode_number,
-        air_date: tv_episode_data.air_date,
-        name: tv_episode_data.name || tv_episode_data.original_name,
-        overview: tv_episode_data.overview,
-        additional_videos: JSON.stringify(tv_episode_data.videos),
-        additional_images: JSON.stringify(tv_episode_data.images),
-      }
-      const tv_episode_row = await upsert_tv_episode(context, tv_episode_row_data)
-    }
-  }
-}
-
 async function collect_tv_series(context: Context, id: string) {
+  const tv_series_keys = { themoviedb_id: id }
   try {
-    await collect_tv_series(context, id)
+    const { supabase, moviedb_api_key } = context
+    const url = `https://api.themoviedb.org/3/tv/${id}?api_key=${moviedb_api_key}&append_to_response=images,videos`
+    const tv_series_data = await fetch_moviedb(url)
+
+    const tv_series_row_data = {
+      ...tv_series_keys,
+      title: tv_series_data.title,
+      original_title: tv_series_data.original_title,
+      original_language: tv_series_data.original_language,
+      spoken_languages: JSON.stringify(tv_series_data.spoken_languages),
+      imdb_id: tv_series_data.imdb_id,
+      number_of_episodes: tv_series_data.number_of_episodes,
+      number_of_seasons: tv_series_data.number_of_seasons,
+      overview: tv_series_data.overview,
+      poster_path: tv_series_data.poster_path,
+      release_date: tv_series_data.release_date ? tv_series_data.release_date : null,
+      series_type: tv_series_data.series_type,
+      status: tv_series_data.status,
+      tagline: tv_series_data.tagline,
+      genres: JSON.stringify(tv_series_data.genres),
+      additional_videos: JSON.stringify(tv_series_data.videos),
+      additional_images: JSON.stringify(tv_series_data.images),
+    }
+
+    const tv_series_row = await upsert_tv_series(context, tv_series_row_data)
+
+    const tv_series_id = tv_series_row.data[0].id
+
+    for (const { season_number } of tv_series_data.seasons) {
+      const season_keys = { ...tv_series_keys, tv_series_id, season_number }
+      try {
+        const url = `https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${moviedb_api_key}&append_to_response=images,videos`
+        const tv_season_data = await fetch_moviedb(url)
+        const tv_season_row_data = {
+          tv_series_id: tv_series_id,
+          season_number: tv_season_data.season_number,
+          air_date: tv_season_data.air_date,
+          name: tv_season_data.name,
+          overview: tv_season_data.overview,
+          poster_path: tv_season_data.poster_path,
+          additional_videos: JSON.stringify(tv_season_data.videos),
+          additional_images: JSON.stringify(tv_season_data.images),
+        }
+        const tv_season_row = await upsert_tv_season(context, tv_season_row_data)
+
+        for (const { episode_number } of tv_season_data.episodes) {
+          const episode_keys = { ...season_keys, episode_number }
+          try {
+            const url = `https://api.themoviedb.org/3/tv/${id}/season/${season_number}/episode/${episode_number}?api_key=${moviedb_api_key}&append_to_response=images,videos`
+            const tv_episode_data = await fetch_moviedb(url)
+            const tv_episode_row_data = {
+              ...episode_keys,
+              tv_series_id: tv_series_id,
+              season_number: tv_season_data.season_number,
+              episode_number: tv_episode_data.episode_number,
+              air_date: tv_episode_data.air_date,
+              name: tv_episode_data.name || tv_episode_data.original_name,
+              overview: tv_episode_data.overview,
+              additional_videos: JSON.stringify(tv_episode_data.videos),
+              additional_images: JSON.stringify(tv_episode_data.images),
+            }
+            const tv_episode_row = await upsert_tv_episode(context, tv_episode_row_data)
+          } catch (e) {
+            if (e instanceof errors.MovieDbError) context.stats.tv_seasons.failed.push(episode_keys)
+            else throw e
+          }
+        }
+      } catch (e) {
+        if (e instanceof errors.MovieDbError) context.stats.tv_seasons.failed.push(season_keys)
+        else throw e
+      }
+    }
   } catch (e) {
-    if (e instanceof errors.InvalidMovieDBEntry) context.stats.tv_series.invalid_ids.push(id)
+    if (e instanceof errors.MovieDbError) context.stats.tv_seasons.failed.push(tv_series_keys)
     else throw e
   }
 }

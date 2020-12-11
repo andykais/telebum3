@@ -20,6 +20,6 @@ class FetchError extends Error {
   }
 }
 
-class InvalidMovieDBEntry extends Error {}
+class MovieDbError extends Error {}
 
-export { SupabaseError, InvalidMovieDBEntry, FetchError }
+export { SupabaseError, MovieDbError, FetchError }

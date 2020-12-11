@@ -30,6 +30,8 @@ async function update_progress(context: Context) {
   const movie_progress_percentage = (context.stats.movies.created + context.stats.movies.updated) / context.stats.movies.total_queued
   // prettier-ignore
   const tv_series_progress_percentage = (context.stats.tv_series.created + context.stats.tv_series.updated) / context.stats.tv_series.total_queued
+  // console.log(`movie percentage ${movie_progress_percentage * 100}%`)
+  // console.log(`tv series percentage ${tv_series_progress_percentage * 100}%`)
   const res = await context.supabase
     .from<tables['data_collection_logs']>('data_collection_logs')
     .update({
