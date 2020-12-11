@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=14.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate:specs": "openapi-typescript https://scpjtuqjxrphrqlsfwio.supabase.co/rest/v1/?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYwNjg0NjM3MiwiZXhwIjoxOTIyNDIyMzcyfQ.eMxiq8poyuspV2J0UtVnkDS1WdhQMUXfg79MgSgD0M0 --output src/types/supabase.ts",
@@ -21,12 +24,12 @@
     "@types/node-fetch": "^2.5.7",
     "openapi-typescript": "^2.4.2",
     "prettier": "^2.2.1",
-    "source-map-support": "^0.5.19",
     "typescript": "^4.1.2"
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.0.7",
     "date-fns": "^2.16.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "source-map-support": "^0.5.19"
   }
 }
